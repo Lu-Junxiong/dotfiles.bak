@@ -1,0 +1,8 @@
+{
+    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim-linux64/bin/nvim",
+    "workbench.colorTheme": "Everforest Dark",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "terminal.integrated.inheritEnv": false
+}
