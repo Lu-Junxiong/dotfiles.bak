@@ -1,5 +1,5 @@
 local opt = vim.opt 
-
+--opt.termguicolors = true
 opt.relativenumber = true 
 opt.number = true
 opt.autoindent = true
@@ -9,4 +9,3 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.wrap = true
 opt.incsearch = true
-
