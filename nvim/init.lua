@@ -1,4 +1,7 @@
 require("config.options")
 require("config.keymaps")
-require("plugins.lazy")
-require('colorscheme')
+require("config.lazy")
+require("config.nvim-tree-key")
+
+require("config.colorscheme")
+--require('colorscheme')
