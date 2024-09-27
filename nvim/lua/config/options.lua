@@ -15,6 +15,7 @@ opt.shiftwidth = 4
 opt.scrolloff = 4
 opt.termguicolors = true
 if vim.g.neovide then
-    vim.opt.guifont = {"JetBrainsMono Nerd Font Mono", ":h20"}
+    vim.opt.guifont = {"JetBrainsMono Nerd Font Mono", ":h14"}
 end
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
