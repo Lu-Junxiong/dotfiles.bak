@@ -13,4 +13,3 @@ keymap.set("v", "<C-k>", [[:m '<-2<CR>gv=gv]])
 -- cancek highlighting
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
-
