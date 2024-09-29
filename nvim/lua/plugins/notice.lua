@@ -9,19 +9,19 @@ return {
                 ["cmp.entry.get_documentation"] = true
             }
         },
-        routes = {{
+        routes = { {
             filter = {
                 event = "msg_show",
-                any = {{
+                any = { {
                     find = "%d+L, %d+B"
                 }, {
                     find = "; after #%d+"
                 }, {
                     find = "; before #%d+"
-                }}
+                } }
             },
             view = "mini"
-        }},
+        } },
         presets = {
             bottom_search = true,
             command_palette = true,
@@ -29,7 +29,7 @@ return {
         }
     },
     -- stylua: ignore
-    keys = {{
+    keys = { {
         "<leader>sn",
         "",
         desc = "+noice"
@@ -80,7 +80,7 @@ return {
         silent = true,
         expr = true,
         desc = "Scroll Forward",
-        mode = {"i", "n", "s"}
+        mode = { "i", "n", "s" }
     }, {
         "<c-b>",
         function()
@@ -91,8 +91,8 @@ return {
         silent = true,
         expr = true,
         desc = "Scroll Backward",
-        mode = {"i", "n", "s"}
-    }},
+        mode = { "i", "n", "s" }
+    } },
     config = function(_, opts)
         -- HACK: noice shows messages from before it was enabled,
         -- but this is not ideal when Lazy is installing plugins,

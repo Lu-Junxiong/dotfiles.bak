@@ -7,4 +7,4 @@ keymap.set("v", "<C-j>", [[:m '>+1<CR>gv=gv]])
 keymap.set("v", "<C-k>", [[:m '<-2<CR>gv=gv]])
 -- cancek highlighting
 keymap.set("n", "<leader>nh", ":nohl<CR>")
-
+keymap.set({"n", "v"}, "<leader>lf", vim.lsp.buf.format, { remap = false })
