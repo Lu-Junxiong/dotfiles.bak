@@ -31,6 +31,8 @@ keymap.set('n', '<A-h>', [[<C-\><C-n><Cmd>wincmd h<CR>]]) -- 移动到左窗口
 keymap.set('n', '<A-j>', [[<C-\><C-n><Cmd>wincmd j<CR>]]) -- 移动到下窗口
 keymap.set('n', '<A-k>', [[<C-\><C-n><Cmd>wincmd k<CR>]]) -- 移动到上窗口
 keymap.set('n', '<A-l>', [[<C-\><C-n><Cmd>wincmd l<CR>]]) -- 移动到右窗口
-keymap.set("n", "ss", ":split<CR><C-w>w")
-keymap.set("n", "sv", ":vsplit<CR><C-w>w")
+keymap.set("n", "<leader>ss", ":split<CR><C-w>w")
+keymap.set("n", "<leader>sv", ":vsplit<CR><C-w>w")
 keymap.set("n", "<leader>c", "<C-w>q")
+keymap.set("n", "q", ":bd<CR>")
+

@@ -106,6 +106,13 @@ return {
                     },
                     ["<leader>o"] = "actions.close",     -- 绑定关闭操作
                     ["<leader>e"] = "actions.close",     -- 绑定关闭操作
+                    ['yp'] = {
+                            desc = 'Copy filepath to system clipboard',
+                            callback = function ()
+                                require('oil.actions').copy_entry_path.callback()
+                                vim.fn.setreg("+", vim.fn.getreg(vim.v.register))
+                            end,
+                        },
                 },
                 cleanup_delay_ms = 1000,                 -- 清理延迟时间
                 view_options = {
