@@ -1,37 +1,39 @@
--- function _G.get_oil_winbar()
---     local dir = require("oil").get_current_dir()
---     if dir then
---         return vim.fn.fnamemodify(dir, ":~")
---     else
---         -- If there is no current directory (e.g. over ssh), just show the buffer name
---         return vim.api.nvim_buf_get_name(0)
---     end
--- end
-
 local M = {}
+
+-- 预览功能的配置
 M.preview = {
+    -- 描述预览功能的作用
     desc = "Open the entry under the cursor in a preview window, or close the preview window if already open",
+
+    -- 回调函数，执行预览操作
     callback = function()
         local oil = require("oil")
         local util = require("oil.util")
-        local entry = oil.get_cursor_entry()
+        local entry = oil.get_cursor_entry() -- 获取光标下的条目
+
         if not entry then
-            vim.notify("Could not find entry under cursor", vim.log.levels.ERROR)
+            vim.notify("Could not find entry under cursor", vim.log.levels.ERROR) -- 找不到条目时通知用户
             return
         end
-        local winid = util.get_preview_win()
+
+        local winid = util.get_preview_win() -- 获取当前预览窗口的 ID
+
         if winid then
-            local cur_id = vim.w[winid].oil_entry_id
+            local cur_id = vim.w[winid].oil_entry_id -- 当前预览窗口的条目 ID
+
+            -- 如果当前预览的条目与光标下的条目相同，则关闭预览窗口
             if entry.id == cur_id then
                 vim.api.nvim_win_close(winid, true)
-                if util.is_floating_win() then
+                if util.is_floating_win() then                        -- 检查是否是浮动窗口
                     local layout = require("oil.layout")
-                    local win_opts = layout.get_fullscreen_win_opts()
-                    vim.api.nvim_win_set_config(0, win_opts)
+                    local win_opts = layout.get_fullscreen_win_opts() -- 获取全屏窗口选项
+                    vim.api.nvim_win_set_config(0, win_opts)          -- 设置窗口配置
                 end
                 return
             end
         end
+
+        -- 打开新的预览窗口
         oil.open_preview({
             vertical = true,
             split = 'botright'
@@ -39,96 +41,94 @@ M.preview = {
     end
 }
 
-return { {
-    'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = { {
-        "echasnovski/mini.icons",
-        opts = {}
-    } },
-    keys = {
-        { '<leader>e', function()
-            vim.cmd(":Oil")
-        end, {
-            desc = 'Oil edit'
-        } },
-        {
-            '<leader>o', function()
-            vim.cmd(":Oil --float")
-        end, { desc = 'Oil float' }
-        }
-    },
-    config = function()
-        require("oil").setup({
-            default_file_explorer = true,
-            win_options = {
-                -- winbar = "%!v:lua.get_oil_winbar()"
+return {
+    {
+        -- 插件名称
+        'stevearc/oil.nvim',
+        opts = {}, -- 插件选项，当前为空
+
+        -- 可选依赖
+        dependencies = {
+            {
+                "echasnovski/mini.icons",
+                opts = {} -- 依赖的插件选项
+            }
+        },
+
+        -- 按键绑定
+        keys = {
+            {
+                '<leader>e',
+                function()
+                    vim.cmd(":Oil") -- 打开 Oil 文件浏览器
+                end,
+                { desc = 'Oil edit' }
             },
-            columns = {
-                "size",
-                "icon",
-                -- "permissions",
-                -- "mtime",
-            },
-            reverse_columns = true,
-            float = {
-                -- Padding around the floating window
-                padding = 1,
-                max_width = 200,
-                max_height = 40,
-                border = "rounded",
+            {
+                '<leader>o',
+                function()
+                    vim.cmd(":Oil --float") -- 以浮动窗口打开 Oil 文件浏览器
+                end,
+                { desc = 'Oil float' }
+            }
+        },
+
+        -- 配置函数
+        config = function()
+            require("oil").setup({
+                default_file_explorer = true, -- 设置为默认文件浏览器
                 win_options = {
-                    winblend = 10,
+                    -- 可选：winbar = "%!v:lua.get_oil_winbar()"
                 },
-                preview_split = "right",
-            },
-            keymaps = {
-                ['<C-p>'] = {
-                    callback = function()
-                        M.preview.callback()
+                columns = {
+                    "size", -- 显示文件大小
+                    "icon", -- 显示文件图标
+                    -- "permissions",  -- 可选：显示文件权限
+                    -- "mtime",  -- 可选：显示文件修改时间
+                },
+                float = {
+                    -- 浮动窗口的配置
+                    padding = 1,             -- 浮动窗口周围的填充
+                    max_width = 200,         -- 最大宽度
+                    max_height = 40,         -- 最大高度
+                    border = "rounded",      -- 边框样式
+                    win_options = {
+                        winblend = 10,       -- 浮动窗口的透明度
+                    },
+                    preview_split = "right", -- 预览分割位置
+                },
+                keymaps = {
+                    ['<C-p>'] = {
+                        callback = function()
+                            M.preview.callback()         -- 绑定 Ctrl+p 键进行预览
+                        end,
+                        desc = M.preview.desc,           -- 绑定描述
+                    },
+                    ["<leader>o"] = "actions.close",     -- 绑定关闭操作
+                    ["<leader>e"] = "actions.close",     -- 绑定关闭操作
+                },
+                cleanup_delay_ms = 1000,                 -- 清理延迟时间
+                view_options = {
+                    show_hidden = false,                 -- 不显示隐藏文件
+                    is_hidden_file = function(name, bufnr)
+                        return vim.startswith(name, ".") -- 判断以 "." 开头的文件为隐藏文件
                     end,
-                    desc = M.preview.desc,
+                    is_always_hidden = function(name, bufnr)
+                        return false         -- 永远不隐藏的文件
+                    end,
+                    natural_order = false,   -- 不使用自然排序
+                    case_insensitive = true, -- 排序时不区分大小写
+                    sort = {
+                        { "type", "asc" },   -- 按类型升序排序
+                        { "name", "asc" },   -- 按名称升序排序
+                    },
+                    lsp_file_methods = {
+                        enabled = false,          -- 禁用 LSP 文件操作
+                        timeout_ms = 9999,        -- LSP 文件操作超时时间
+                        autosave_changes = false, -- 禁用自动保存
+                    },
                 },
-                ["<leader>o"] = "actions.close",
-                ["<leader>e"] = "actions.close",
-                -- ['<C-p>'] = function ()
-                --     require("oil").open_float("~/dotfiles")
-                -- end
-            },
-            cleanup_delay_ms = 1000,
-            view_options = {
-                -- Show files and directories that start with "."
-                show_hidden = false,
-                -- This function defines what is considered a "hidden" file
-                is_hidden_file = function(name, bufnr)
-                    return vim.startswith(name, ".")
-                end,
-                -- This function defines what will never be shown, even when `show_hidden` is set
-                is_always_hidden = function(name, bufnr)
-                    return false
-                end,
-                -- Sort file names in a more intuitive order for humans. Is less performant,
-                -- so you may want to set to false if you work with large directories.
-                natural_order = false,
-                -- Sort file and directory names case insensitive
-                case_insensitive = true,
-                sort = {
-                    -- sort order can be "asc" or "desc"
-                    -- see :help oil-columns to see which columns are sortable
-                    { "type", "asc" },
-                    { "name", "asc" },
-                },
-                lsp_file_methods = {
-                    -- Enable or disable LSP file operations
-                    enabled = false,
-                    -- Time to wait for LSP file operations to complete before skipping
-                    timeout_ms = 9999,
-                    -- Set to true to autosave buffers that are updated with LSP willRenameFiles
-                    -- Set to "unmodified" to only save unmodified buffers
-                    autosave_changes = false,
-                },
-            },
-        })
-    end
-} }
+            })
+        end
+    }
+}

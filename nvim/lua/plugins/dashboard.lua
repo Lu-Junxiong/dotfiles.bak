@@ -1,4 +1,4 @@
-return {{
+return { {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
@@ -45,7 +45,7 @@ return {{
             },
             config = {
                 header = vim.split(logo, "\n"),
-                center = {{
+                center = { {
                     action = 'lua require("telescope.builtin").find_files()',
                     desc = " Find Files ",
                     icon = "🔍",
@@ -70,14 +70,14 @@ return {{
                     desc = " Quit",
                     icon = "🚪",
                     key = "q"
-                }},
+                } },
                 footer = function()
                     local stats = require("lazy").stats()
                     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                    return {"⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"}
+                    return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
                 end
             }
         }
     end,
-    dependencies = {{'nvim-tree/nvim-web-devicons'}}
-}}
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+} }

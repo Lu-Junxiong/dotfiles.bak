@@ -1,4 +1,4 @@
-return {{
+return { {
     "neanias/everforest-nvim",
     config = function()
         require('everforest').setup({
@@ -12,9 +12,9 @@ return {{
     opts = {
         event = "VimEnter"
     }
-}}
+} }
 -- require("bufferline").setup({
---       options = {  
+--       options = {
 -- 		  offsets = {
 --           {
 --             filetype = "NvimTree",
@@ -25,4 +25,3 @@ return {{
 --           },
 --         },}
 -- })
-
