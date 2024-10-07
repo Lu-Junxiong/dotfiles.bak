@@ -20,7 +20,16 @@ return {
                     right_mouse_command = "bdelete! %d", -- 右键菜单的关闭命令
                     separator_style = "double", -- 分隔符样式（"slant", "thick", "thin", "double", "none"）
                     show_buffer_close_icons = true, -- 是否显示关闭图标
-                }
+                    offsets = {
+                        {
+                            filetype = "NvimTree",
+                            text = "File Explorer",
+                            highlight = "Directory",
+                            separator = true 
+                        }
+                    }
+                },
+
             }
         end,
     }

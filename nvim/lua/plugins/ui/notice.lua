@@ -34,6 +34,11 @@ return {
                 },
                 view = "mini", -- 对于过滤的消息使用 mini 视图
             },
+            {
+
+                filter = { event = "notify",  find = "^.*WARNING.*vim.treesitter.get_parser.*$"},
+                opts = { skip = true },
+            }
         },
 
         presets = {

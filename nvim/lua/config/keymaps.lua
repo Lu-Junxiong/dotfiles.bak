@@ -20,19 +20,18 @@ vim.cmd([[
 command! WQA execute 'write | %bwipeout!' | silent! tabonly | Dashboard
 ]])
 
--- 使用 <leader>q 触发 WQA 命令
-vim.keymap.set('n', '<leader>q', ':WQA<CR>', { noremap = true, silent = true })
-
--- 使用 <leader>w 保存所有缓冲区
+vim.keymap.set('n', '<leader><CR>', ':WQA<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>w', ':wa<CR>', { noremap = true, silent = true })
 
 -- 使用 Alt + 方向键移动窗口
-keymap.set('n', '<A-h>', [[<C-\><C-n><Cmd>wincmd h<CR>]]) -- 移动到左窗口
-keymap.set('n', '<A-j>', [[<C-\><C-n><Cmd>wincmd j<CR>]]) -- 移动到下窗口
-keymap.set('n', '<A-k>', [[<C-\><C-n><Cmd>wincmd k<CR>]]) -- 移动到上窗口
-keymap.set('n', '<A-l>', [[<C-\><C-n><Cmd>wincmd l<CR>]]) -- 移动到右窗口
+keymap.set({'n', 't'}, '<A-h>', [[<C-\><C-n><Cmd>wincmd h<CR>]]) -- 移动到左窗口
+keymap.set({'n', 't'}, '<A-j>', [[<C-\><C-n><Cmd>wincmd j<CR>]]) -- 移动到下窗口
+keymap.set({'n', 't'}, '<A-k>', [[<C-\><C-n><Cmd>wincmd k<CR>]]) -- 移动到上窗口
+keymap.set({'n', 't'}, '<A-l>', [[<C-\><C-n><Cmd>wincmd l<CR>]]) -- 移动到右窗口
 keymap.set("n", "<leader>ss", ":split<CR><C-w>w")
 keymap.set("n", "<leader>sv", ":vsplit<CR><C-w>w")
-keymap.set("n", "<leader>c", "<C-w>q")
+keymap.set("n", "<leader>q", "<C-w>q")
 keymap.set("n", "q", ":bd<CR>")
-
+vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>dt", ":windo diffthis<CR>", { desc = "Enable diff in all windows" })
+vim.keymap.set("n", "<leader>do", ":windo diffoff<CR>", { desc = "Disable diff in all windows" })

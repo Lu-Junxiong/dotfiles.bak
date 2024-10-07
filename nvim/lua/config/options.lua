@@ -8,6 +8,7 @@ opt.expandtab = true          -- 将制表符转换为空格
 opt.smartindent = true        -- 智能缩进
 opt.wrap = true               -- 自动换行
 opt.autoindent = true         -- 自动缩进新行
+opt.smartindent = true
 opt.cursorline = true         -- 高亮当前行
 opt.scrolloff = 4             -- 滚动时保持行数
 
@@ -44,3 +45,5 @@ opt.foldmethod = "expr"       -- 使用表达式折叠
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Treesitter 折叠
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]] -- 填充字符设置
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
