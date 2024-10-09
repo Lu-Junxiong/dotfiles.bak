@@ -1,8 +1,230 @@
 {
-    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim-linux64/bin/nvim",
-    "workbench.colorTheme": "Everforest Dark",
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
+    // ========== Visuals ==========
+    "workbench.colorTheme": "Learn with Sumit - Simple as light",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.list.smoothScrolling": true,
+    "workbench.tree.indent": 10,
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.inlineSuggest.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.mouseWheelZoom": true,
+    "editor.fontSize": 22,
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "terminal.integrated.smoothScrolling": true,
+    "editor.renderWhitespace": "boundary",
+    // ========== Update ==========
+    "update.mode": "none",
+    "extensions.autoCheckUpdates": false,
+    "extensions.autoUpdate": false,
+    // ========== Editor ========== 
+    "files.autoSave": "afterDelay",
+    "editor.tabCompletion": "on",
+    "notebook.lineNumbers": "on",
+    "editor.lineNumbers": "relative",
+    "search.showLineNumbers": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    // ========== Python ========== 
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoFormatStrings": true,
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
     },
-    "terminal.integrated.inheritEnv": false
+    // ========== Vim ========== 
+    "vim.easymotion": true,
+    "vim.foldfix": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.leader": "<space>",
+    "vim.smartRelativeLine": true,
+    "editor.acceptSuggestionOnEnter": "off",
+    "vim.handleKeys": {
+        "<C-s>": false,
+        "<C-v>": false,
+        "<C-c>": false,
+        "<C-x>": false,
+        "<C-a>": false,
+        "<C-z>": false,
+        "<C-n>": false,
+        "<C-p>": false,
+        "q": false,
+        "<C-w>": false
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "d"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "z",
+                "m"
+            ],
+            "commands": [
+                "workbench.action.toggleZenMode"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "f",
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "g",
+            ],
+            "commands": [
+                "workbench.action.findInFiles",
+            ]
+        },
+        // Tree
+        {
+            "before": [
+                "<leader>",
+                "e",
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.files.action.focusFilesExplorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "o",
+            ],
+            "commands": [
+                "workbench.action.toggleAuxiliaryBar",
+                "outline.focus",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+            ],
+            "commands": [
+                "workbench.action.closeSidebar",
+                "workbench.action.closeAuxiliaryBar",
+                "workbench.action.closePanel",
+            ]
+        },
+        // {
+        //     "before": [
+        //         "<leader>",
+        //         "t",
+        //     ],
+        //     "commands": [
+        //         "workbench.action.togglePanel",
+        //     ]
+        // },
+        {
+            "before": [
+                "<leader>",
+                "r",
+                "n",
+            ],
+            "commands": [
+                "editor.action.rename",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "2",
+                "f",
+            ],
+            "commands": [
+                "editor.foldLevel2"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "1",
+                "f",
+            ],
+            "commands": [
+                "editor.foldLevel1"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "u",
+                "f",
+                "a",
+            ],
+            "commands": [
+                "editor.unfoldAll"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "a",
+            ],
+            "commands": [
+                "editor.foldAll"
+            ]
+        },
+    ],
+    // easymotion
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "<leader>",
+                "b",
+                "d",
+                "w"
+            ]
+        },
+        {
+            "before": [
+                "s"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "s"
+            ]
+        }
+    ],
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "editor.minimap.enabled": false,
 }
