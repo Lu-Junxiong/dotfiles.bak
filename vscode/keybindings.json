@@ -40,11 +40,11 @@
         "when": "auxiliaryBarFocus && !inputFocus"
     },
     {
-        "key": "]",
+        "key": "ctrl-]",
         "command": "workbench.action.nextEditor"
     },
     {
-        "key": "[",
+        "key": "ctrl-[",
         "command": "workbench.action.previousEditor"
     },
     {

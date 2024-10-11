@@ -64,7 +64,25 @@
             "after": [
                 "<Esc>"
             ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                "tab"
+            ],
+            "after": [
+                "tab"
+            ]
         },
+        {
+            "before": [
+                "<S-Tab>"
+            ],
+            "after": [
+                "outdent"
+            ]
+        }
     ],
     "vim.normalModeKeyBindings": [
         {
@@ -227,5 +245,4 @@
             ]
         }
     ],
-
 }
